@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import {Alert} from 'react-native';
 
 export default function App() {
   const [firstNumber, setFirstNumber] = useState('');
@@ -7,11 +8,22 @@ export default function App() {
   const [result, setResult] = useState('');
 
   const handleCalculate = (operation) => {
+    if(firstNumber===''|| secondNumber===''){
+      Alert.alert('Error', 'Please fill in both input fields!');
+      return;
+    }
+
+
     const num1 = parseFloat(firstNumber);
     const num2 = parseFloat(secondNumber);
 
-  
+    if(isNaN(num1)|| isNaN(num2)){
+      Alert.alert('Error', 'Please enter valid numbers');
+      return;
     }
+
+  
+    
 
     let calculation;
     switch (operation) {
@@ -25,6 +37,10 @@ export default function App() {
         calculation = num1 * num2;
         break;
       case 'Divide':
+        if(num2 === 0){
+          Alert.alert('Error', 'Cannot divide by zero');
+          return;
+        }
         
         calculation = num1 / num2;
         break;
@@ -94,6 +110,7 @@ export default function App() {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
