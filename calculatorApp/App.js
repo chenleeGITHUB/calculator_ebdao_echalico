@@ -10,9 +10,7 @@ export default function App() {
     const num1 = parseFloat(firstNumber);
     const num2 = parseFloat(secondNumber);
 
-    if (isNaN(num1) || isNaN(num2)) {
-      alert('Please enter valid numbers');
-      return;
+  
     }
 
     let calculation;
@@ -27,10 +25,7 @@ export default function App() {
         calculation = num1 * num2;
         break;
       case 'Divide':
-        if (num2 === 0) {
-          alert('Cannot divide by zero');
-          return;
-        }
+        
         calculation = num1 / num2;
         break;
       default:
